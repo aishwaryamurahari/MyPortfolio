@@ -1,102 +1,120 @@
 import React from 'react';
-// icon
-import { BsArrowUpRight } from 'react-icons/bs';
-// motion
 import { motion } from 'framer-motion';
-// variants
+import {
+  FaReact,
+  FaJs,
+  FaHtml5,
+  FaCss3Alt,
+  FaDocker,
+  FaNode,
+  FaDatabase,
+  FaAngular,
+} from 'react-icons/fa';
 import { fadeIn } from '../variants';
-
-// services data
-const services = [
-  {
-    name: 'UI/UX Design',
-    description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, quia quo expedita accusamus illum ducimus.',
-    link: 'Learn more',
-  },
-  {
-    name: 'Development',
-    description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, quia quo expedita accusamus illum ducimus.',
-    link: 'Learn more',
-  },
-  {
-    name: 'Digital Marketing',
-    description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, quia quo expedita accusamus illum ducimus.',
-    link: 'Learn more',
-  },
-  {
-    name: 'Product Branding',
-    description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores, quia quo expedita accusamus illum ducimus.',
-    link: 'Learn more',
-  },
-];
 
 const Services = () => {
   return (
-    <section className='section' id='services'>
-      <div className='container mx-auto'>
-        <div className='flex flex-col lg:flex-row'>
-          {/* text & image */}
-          <motion.div
-            variants={fadeIn('right', 0.3)}
-            initial='hidden'
-            whileInView={'show'}
-            viewport={{ once: false, amount: 0.3 }}
-            className='flex-1 lg:bg-services lg:bg-bottom bg-no-repeat mix-blend-lighten mb-12 lg:mb-0'
-          >
-            <h2 className='h2 text-accent mb-6'>What I Do.</h2>
-            <h3 className='h3 max-w-[455px] mb-16'>
-              I'm a Freelance Front-end Developer with over 5 years of
-              experience.
-            </h3>
-            <button className='btn btn-sm'>See my work</button>
-          </motion.div>
-          {/* services */}
-          <motion.div
-            variants={fadeIn('left', 0.5)}
-            initial='hidden'
-            whileInView={'show'}
-            viewport={{ once: false, amount: 0.3 }}
-            className='flex-1'
-          >
-            {/* service list */}
-            <div>
-              {services.map((service, index) => {
-                // destructure service
-                const { name, description, link } = service;
-                return (
-                  <div
-                    className='border-b border-white/20 h-[146px] mb-[38px] flex'
-                    key={index}
-                  >
-                    <div className='max-w-[476px]'>
-                      <h4 className='text-[20px] tracking-wider font-primary font-semibold mb-6'>
-                        {name}
-                      </h4>
-                      <p className='font-secondary leading-tight'>
-                        {description}
-                      </p>
-                    </div>
-                    <div className='flex flex-col flex-1 items-end'>
-                      <a
-                        href='#'
-                        className='btn w-9 h-9 mb-[42px] flex justify-center items-center'
-                      >
-                        <BsArrowUpRight />
-                      </a>
-                      <a href='#' className='text-gradient text-sm'>
-                        {link}
-                      </a>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </motion.div>
+    <section className="section" id="services">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {' '}
+        {/* Added responsive padding */}
+        {/* Top Center Heading */}
+        <div className="flex justify-center mt-4 lg:mt-8 mb-10">
+          <h2 className="text-[32px] sm:text-[40px] font-extrabold text-accent mb-10">
+            MY SKILLS
+          </h2>{' '}
+          {/* Responsive text size */}
         </div>
+        {/* Rest of the content
+        <div className='flex flex-col lg:flex-row'> */}
+        {/* First Row of Icons */}
+        <motion.div
+          variants={fadeIn('up', 0.6)}
+          initial="hidden"
+          whileInView={'show'}
+          viewport={{ once: false, amount: 0.7 }}
+        >
+          <div className="flex flex-wrap justify-center gap-5">
+            {/* React Icon */}
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaReact size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+            {/* Angular Icon */}
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaAngular size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+
+            {/* JavaScript Icon */}
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaJs size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+
+            {/* HTML5 Icon */}
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaHtml5 size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+          </div>
+
+          {/* Second Row of Icons */}
+          <div className="flex flex-wrap justify-center">
+            {/* CSS3 Icon */}
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaCss3Alt size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+            {/* NodeJS Icon */}
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaNode size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+
+            <motion.div>
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaDatabase size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+            <motion.div className="mb-[88px] mx-10">
+              <div className="btn w-100 h-100 mb-[88px] flex justify-center items-center">
+                <FaDocker size={100} />
+              </div>
+              <h2 className="h2 text-accent mb-2 text-[20px] font-extrabold">
+                {' '}
+              </h2>
+            </motion.div>
+          </div>
+        </motion.div>
+        {/* Docker Icon */}
       </div>
     </section>
   );

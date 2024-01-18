@@ -1,106 +1,127 @@
-import React from 'react';
-// motion
-import { motion } from 'framer-motion';
-// variants
-import { fadeIn } from '../variants';
-// img
-import Img1 from '../assets/portfolio-img1.png';
-import Img2 from '../assets/portfolio-img2.png';
-import Img3 from '../assets/portfolio-img3.png';
+import React, { useState, useEffect } from 'react';
+import data from '../data/portfolioData';
+import Modal from '../components/Modal';
 
 const Work = () => {
+  const [nextItems, setNextItems] = useState(6);
+  const [portfolios, setPortfolios] = useState(data);
+  const [selectTab, setSelectTab] = useState('all');
+  const [showModal, setShowModal] = useState(false);
+  const [activeID, setActiveID] = useState(null);
+
+  const loadMoreHandler = () => {
+    setNextItems((prev) => prev + 3);
+  };
+
+  const showModalHandler = (id) => {
+    setShowModal(true);
+    setActiveID(id);
+  };
+
+  useEffect(() => {
+    if (selectTab === 'all') {
+      setPortfolios(data);
+    }
+
+    if (selectTab === 'web-design') {
+      const filteredData = data.filter(
+        (item) => item.category === 'Web Design'
+      );
+      setPortfolios(filteredData);
+    }
+    if (selectTab === 'backend') {
+      const filteredData = data.filter((item) => item.category === 'Backend');
+      setPortfolios(filteredData);
+    }
+  }, [selectTab]);
+
   return (
-    <section className='section' id='work'>
-      <div className='container mx-auto'>
-        <div className='flex flex-col lg:flex-row gap-x-10'>
-          <motion.div
-            variants={fadeIn('right', 0.3)}
-            initial='hidden'
-            whileInView={'show'}
-            viewport={{ once: false, amount: 0.3 }}
-            className='flex-1 flex flex-col gap-y-12 mb-10 lg:mb-0'
-          >
-            {/* text */}
-            <div>
-              <h2 className='h2 leading-tight text-accent'>
-                My Latest <br />
-                Work.
-              </h2>
-              <p className='max-w-sm mb-16'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repellat, hic! Harum quis, cum velit neque esse eos molestias
-                doloremque explicabo!
-              </p>
-              <button className='btn btn-sm'>View all projects</button>
+    <section className="items-center mb-80" id="work">
+      <div className="container mx-auto flex flex-col items-center mb-100">
+        <div className="flex items-center justify-between flex-wrap gap-x-32 gap-y-2 mt-20 mb-50">
+          <div className="ml-auto">
+            <div className="mb-7 sm:mb-0">
+              <h3 className="sm:text-[40px] text-headingColor text-[32px] font-extrabold text-accent">
+                MY PROJECTS
+              </h3>
             </div>
-            {/* image */}
-            <div className='group relative overflow-hidden border-2 border-white/50 rounded-xl'>
-              {/* overlay */}
-              <div className='group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300'></div>
-              {/* img */}
-              <img
-                className='group-hover:scale-125 transition-all duration-500'
-                src={Img1}
-                alt=''
-              />
-              {/* pretitle */}
-              <div className='absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50'>
-                <span className='text-gradient'>UI/UX Design</span>
-              </div>
-              {/* title */}
-              <div className='absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50'>
-                <span className='text-3xl text-white'>Project Title</span>
-              </div>
+          </div>
+
+          <div className="mr-auto">
+            <div className="flex justify-end gap-3">
+              <button
+                onClick={() => setSelectTab('all')}
+                className="btn btn-sm text-[18px]"
+              >
+                All
+              </button>
+
+              <button
+                onClick={() => setSelectTab('web-design')}
+                className="btn btn-sm text-[18px]"
+              >
+                Web Design
+              </button>
+
+              <button
+                onClick={() => setSelectTab('backend')}
+                className="btn btn-sm text-[18px]"
+              >
+                Backend
+              </button>
             </div>
-          </motion.div>
-          <motion.div
-            variants={fadeIn('left', 0.2)}
-            initial='hidden'
-            whileInView={'show'}
-            viewport={{ once: false, amount: 0.3 }}
-            className='flex-1 flex flex-col gap-y-10'
-          >
-            {/* image */}
-            <div className='group relative overflow-hidden border-2 border-white/50 rounded-xl'>
-              {/* overlay */}
-              <div className='group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300'></div>
-              {/* img */}
-              <img
-                className='group-hover:scale-125 transition-all duration-500'
-                src={Img2}
-                alt=''
-              />
-              {/* pretitle */}
-              <div className='absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50'>
-                <span className='text-gradient'>UI/UX Design</span>
-              </div>
-              {/* title */}
-              <div className='absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50'>
-                <span className='text-3xl text-white'>Project Title</span>
-              </div>
-            </div>
-            {/* image */}
-            <div className='group relative overflow-hidden border-2 border-white/50 rounded-xl'>
-              {/* overlay */}
-              <div className='group-hover:bg-black/70 w-full h-full absolute z-40 transition-all duration-300'></div>
-              {/* img */}
-              <img
-                className='group-hover:scale-125 transition-all duration-500'
-                src={Img3}
-                alt=''
-              />
-              {/* pretitle */}
-              <div className='absolute -bottom-full left-12 group-hover:bottom-24 transition-all duration-500 z-50'>
-                <span className='text-gradient'>UI/UX Design</span>
-              </div>
-              {/* title */}
-              <div className='absolute -bottom-full left-12 group-hover:bottom-14 transition-all duration-700 z-50'>
-                <span className='text-3xl text-white'>Project Title</span>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 flex-wrap mt-12 mb-50">
+          {portfolios?.slice(0, nextItems)?.map((portfolio, index) => (
+            <div
+              key={index}
+              data-aos="fade-zoom-in"
+              data-aos-delay="50"
+              data-aos-duration="1000"
+              className="group max-w-96 max-h-60 sm:w-[48.5%] md:w-[31.8%] lg:w-[32.2%] relative z-[1]"
+            >
+              <figure>
+                <img
+                  className="rounded-[8px] max-w-96 max-h-60 border border-white"
+                  src={portfolio.imgUrl}
+                  alt=""
+                />
+              </figure>
+
+              <div
+                className="h-60 w-px bg-black bg-opacity-20 absolute top-0 left-0 z-[5] hidden
+                    group-hover:block rounded-[8px]"
+              >
+                <div className="w-96 h-60 flex items-center justify-center">
+                  <button
+                    onClick={() => showModalHandler(portfolio.id)}
+                    className="text-white bg-black hover:bg-orange py-2 px-4 rounded-[8px]
+                        font-[500] ease-in duration-200 border-black border-solid"
+                  >
+                    See Details
+                  </button>
+                </div>
               </div>
             </div>
-          </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center mt-6">
+          {nextItems < portfolios.length && data.length > 6 && (
+            <button
+              onClick={loadMoreHandler}
+              className="text-white bg-black hover:bg-smallTextColor py-2 px-4 rounded-[8px]
+                            font-[500] ease-in duration-200"
+            >
+              Load More
+            </button>
+          )}
         </div>
       </div>
+
+      {showModal && <Modal setShowModal={setShowModal} activeID={activeID} />}
     </section>
   );
 };
