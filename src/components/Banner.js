@@ -9,7 +9,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { motion } from 'framer-motion';
 // variants
 import { fadeIn } from '../variants';
-
+import { Link } from 'react-scroll';
 const Banner = () => {
   return (
     <section
@@ -74,12 +74,13 @@ const Banner = () => {
               viewport={{ once: false, amount: 0.7 }}
               className="flex max-w-max gap-x-6 items-center mb-12 mx-auto lg:mx-0"
             >
-              <a href="contact">
+              <Link to="contact" activeClass="active" smooth={true} spy={true}>
                 <button className="btn btn-sm text-[18px]">Contact me</button>
-              </a>
-              <a href="work">
+              </Link>
+
+              <Link to="work" activeClass="active" smooth={true} spy={true}>
                 <button className="btn btn-sm text-[18px]">My Portfolio</button>
-              </a>
+              </Link>
             </motion.div>
 
             {/* socials */}
